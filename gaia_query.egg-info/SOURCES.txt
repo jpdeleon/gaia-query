@@ -1,0 +1,9 @@
+README.md
+setup.py
+gaia_query/query.py
+gaia_query.egg-info/PKG-INFO
+gaia_query.egg-info/SOURCES.txt
+gaia_query.egg-info/dependency_links.txt
+gaia_query.egg-info/requires.txt
+gaia_query.egg-info/top_level.txt
+scripts/gaia_query

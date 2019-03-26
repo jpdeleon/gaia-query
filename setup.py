@@ -30,8 +30,8 @@ else:
         return r
 
 setup(
-    name='gaia-query',
-    packages =['gaia-query'],
+    name='gaia_query',
+    packages =['gaia_query'],
     version="0.1.1",
     author='Jerome de Leon',
     author_email = 'jpdeleon@astron.s.u-tokyo.ac.jp',
@@ -40,8 +40,8 @@ setup(
     description ='Simple parackage to deal with gaia data.',
     long_description=rd("README.md") + "\n\n"
                     + "---------\n\n",
-    package_dir={"gaia-query": "query"},
-    scripts=['scripts/gaia-query'],
+    #package_dir={"gaia-query": "query"},
+    scripts=['scripts/gaia_query'],
     include_package_data=True,
     keywords=['Gaia'],
     classifiers = [

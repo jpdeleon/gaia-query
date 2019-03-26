@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: gaia-query
+Version: 0.1.1
+Summary: Simple parackage to deal with gaia data.
+Home-page: https://github.com/jpdeleon/gaia-query
+Author: Jerome de Leon
+Author-email: jpdeleon@astron.s.u-tokyo.ac.jp
+License: ['GNU GPLv3']
+Description: # gaia-query
+        simple script to query gaia parameters
+        
+        
+        ---------
+        
+        
+Keywords: Gaia
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: Programming Language :: Python
