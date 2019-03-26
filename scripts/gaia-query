@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+
+import sys
+import numpy as np
+sys.path.append('../gaia-query')
+
+from gaia-query import query as q
+
+parser = argparse.ArgumentParser(description="""
+                read, reduce and detrend K2 photometry""",
+                usage='use "%(prog)s --help" for more information',
+                formatter_class=argparse.RawTextHelpFormatter)
+parser.add_argument('-e', help='EPIC number', type=int, default=None)
+parser.add_argument('-t', help='TIC number', type=int, default=None)
+parser.add_argument('-ra', help='RA', type=float, default=None)
+parser.add_argument('-dec', help='DEC', type=float, default=None)
+#parser.add_argument('-i', help='indices of params', nargs='+' default=None)
+#parser.add_argument('-b', help='show basic params', action='store_true' default=False)
+parser.add_argument('-p', help='show photometry params', action='store_true' default=False)
+parser.add_argument('-s', help='show star params', action='store_true' default=False)
+parser.add_argument('-r', help='query radius in arcsec', type=float, default=10)
+parser.add_argument('-v', help='verbose', type=bool, default=False)
+
+args = parser.parse_args()
+verbose = args.v
+
+epic    = args.epic
+tic     = args.epic
+ra, dec = args.ra, args.dec
+idx     = [int(i) for i in args.i]
+
+if not np.all([ra,dec]):
+    if epic is not None:
+        ra,dec,mag = q.get_ra_dec_mag(epic)
+    elif tic is not None:
+        ra,dec,mag = q.get_ra_dec_mag(tic)
+    else:
+        sys.exit('Provide either TIC or EPIC')
+else:
+    sys.exit('Provide RA and DEC')
+    
+d = q.query_gaia(ra, dec, rad=rad)
+params = d.columns
+
+if verbose:
+    for n,p in enumerate(params):
+        print(n,p)
+        
+if True: #args.b:
+    #basic
+    idx1 = [10,11,12,13,14,15,16,33,34,67,68]
+    print(d[params[idx1]].T)
+    
+if args.p:
+    #photometry
+    idx2 = [51,56,61]
+    print(d[params[idx2]].T)
+    
+if args.s:
+    #star
+    idx3 = [79,80,81,89,90,91,82,83,84]
+    print(d[params[idx3]].T)
+    
+if idx:
+    print(d[params[idx]].T)
+    
