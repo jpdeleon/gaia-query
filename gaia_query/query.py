@@ -3,6 +3,7 @@
 from astroquery.gaia import Gaia
 from astropy.coordinates import SkyCoord
 import astropy.units as u
+import warnings
 import k2plr
 client = k2plr.API()
 
@@ -24,5 +25,7 @@ def query_gaia(ra, dec, rad):
 #     height = u.Quantity(20, u.arcsec)
 #     tab = Gaia.query_object_async(coordinate=coord, width=width, height=height)
     radius = u.Quantity(rad, u.arcsec)
-    tab = Gaia.query_object_async(coordinate=coord, radius=radius)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        tab = Gaia.query_object_async(coordinate=coord, radius=radius)
     return tab.to_pandas()
